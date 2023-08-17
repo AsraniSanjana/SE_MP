@@ -1,2 +1,2 @@
 # SE_MP
-Second Year Mini-Project : Covid Patient Tracker (CPT)
+Second Year Mini-Project : CoviHelp: A Covid Patient Tracker (CPT)
