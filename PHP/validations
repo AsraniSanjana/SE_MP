@@ -1,0 +1,133 @@
+$fullname=mysqli_real_escape_string($con,trim($_POST['full_name'])); 
+
+$fullname=strip_tags($_POST['full_name']); 
+
+
+
+
+// INSERT DATA
+  if((isset($_POST['submit']))){
+    //echo "it is set.";
+    $fullname=mysqli_real_escape_string($con,trim($_POST['full_name'])); 
+  // $fullname=mysqli_real_escape_string($con,$_POST['fullname']);
+    $email=mysqli_real_escape_string($con,trim($_POST['email'])); 
+    $username=mysqli_real_escape_string($con,trim($_POST['username'])); 
+    $password=mysqli_real_escape_string($con,trim($_POST['password'])); 
+  
+//$fullname=mysqli_real_escape_string($con,trim($_POST['full_name'])); 
+
+    // VALIDATIONSSSS AHEAD !!!
+
+
+// EMPTY FIELDS VALIDATION!!
+
+
+    if(empty(trim($fullname))){
+      echo "Fullname cant be empty!<br>";
+      //   echo '<script>alert("Fullname Cant be empty")</script>';
+    }
+   
+
+    
+    
+    if(empty(trim($email))){
+        echo "email cant be empty!<br>";
+        //   echo '<script>alert("Fullname Cant be empty")</script>';
+      }
+      
+      
+    if(empty(trim($username))){
+        echo "username cant be empty!<br>";
+        //   echo '<script>alert("Fullname Cant be empty")</script>';
+      }
+       
+
+      
+    if(empty(trim($password))){
+        echo "password cant be empty!<br>";
+        //   echo '<script>alert("Fullname Cant be empty")</script>';
+      }
+     
+      // VALIDATING STRING PATTERNS USING REGEX
+      if (preg_match('/[^a-zA-Z\s\d]/',$fullname)){
+        echo "only alphabets allowed.";
+    }
+    else {
+        echo "fullname is valid!";
+    }
+
+    // VALIDATING EMAIL ADDRES
+
+
+     
+   if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+   echo "email looks good!"; 
+   }
+   else {
+       echo "not a valid email.";
+   }
+
+   
+   if (strlen($fullname)>2 && strlen($fullname)<30==false)
+   {  echo "fullname range is ok!";
+
+    }
+    else {
+     echo "fullname must be 2 to 30 char long !";   
+    }
+
+
+
+/*
+$query="INSERT INTO customer(full_name,email,username,password) VALUES('$fullname','$email','$username','$password')";
+    $fire=mysqli_query($con,$query) or die("cant insert data into db!" . mysqli_error($con));
+  if($fire) {
+      echo "data submitted to database!";
+
+
+    }
+*/
+}
+
+
+
+
+  
+/*
+//preg_match(pattern,subject)
+if (preg_match('/[^a-zA-Z\s\d]/',$fullname)){
+    echo "only alphabets allowed.";
+} else {
+      $query="INSERT INTO users(fullname,email,username,password) VALUES('$fullname','$email','$username','$password')";
+    $fire=mysqli_query($con,$query) or die("cant insert data into db!" . mysqli_error($con)); }
+    
+   if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+    $query="INSERT INTO users(fullname,email,username,password) VALUES('$fullname','$email','$username','$password')";
+    $fire=mysqli_query($con,$query) or die("cant insert data into db!" . mysqli_error($con)); 
+   }
+   else {
+       echo "not a valid email.";
+   }
+
+   if (strlen($fullname)>2 && strlen($fullname)<30==false)
+   {  $query="INSERT INTO users(fullname,email,username,password) VALUES('$fullname','$email','$username','$password')";
+    $fire=mysqli_query($con,$query) or die("cant insert data into db!" . mysqli_error($con)); }
+    else {
+        
+    }
+    
+  //  echo $fullname." ".$email. " ".$username." ".$password;
+  */
+  /*
+    $query="INSERT INTO customer(full_name,email,username,password) VALUES('$fullname','$email','$username','$password')";
+    $fire=mysqli_query($con,$query) or die("cant insert data into db!" . mysqli_error($con));
+  if($fire) {
+      echo "data submitted to database!";
+      header("Location: ../indexdemo.php");
+      */
+  }
+
+//else{
+  //  echo "its not set.";
+//}
+?>

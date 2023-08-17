@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.jquery.min.js"></script>
+    <link rel = "stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+    <link rel="shortcut icon" type="image/jpg" href="favicon.jpeg"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid data India</title>
+
+    <script>
+      
+      var selectedc= '› Choose a State/U.T. ‹';
+      var selectedc2 ='› Select Data to be veiwed ‹';
+      var selectedc3 ='line';
+
+      async function selector()
+      {
+          
+          var d=document.getElementById("selecid");
+          var displaytext=d.options[d.selectedIndex].text;
+          selectedc=displaytext;
+          sessionStorage.setItem("selected", selectedc);
+      }
+
+ 
+      async function selector2()
+      {
+        var d2=document.getElementById("selec2id");
+        var displaytext2=d2.options[d2.selectedIndex].text;
+        selectedc2=displaytext2;
+        sessionStorage.setItem("selected2", selectedc2);
+      }
+
+      
+      async function selector3()
+      {
+        var d3=document.getElementById("selec3id");
+        var displaytext3=d3.options[d3.selectedIndex].text;
+        selectedc3=displaytext3;
+        sessionStorage.setItem("selected3", selectedc3);
+      }
+
+      
+    </script>  
+
+    <script>
+      function buttonfunc(){
+        if (selectedc=='› Choose a State/U.T. ‹'){
+              alert ("please select State/U.T.!");
+            }
+        else if (selectedc2=='› Select Data to be veiwed ‹'){
+            alert ("please choose Data!");
+          }
+        else{
+          nextpage();
+        }
+      }
+    </script>
+    
+    <script>
+      function nextpage(){
+      document.location.href="igraphs2.html";
+      }
+    </script>
+      
+  </head>
+
+<body style="background-color:rgb(16, 17, 16);">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  
+  <div>
+      <link href="./igraphs.css" rel="stylesheet" />
+        <div class="home-container">
+          <header class="home-header">
+            <span class="home-text"><b>Covid-19 Data for India</b></span>
+            <div class="home-separator"></div>
+            <nav class="home-nav"></nav>
+            <svg viewBox="0 0 1024 1024" class="home-icon">
+              <path
+                d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+              ></path>
+            </svg>
+          </header>
+          <span class="home-text1">
+
+            <span>
+              <b>• Please select the state and category for which you would like to see the data</b>
+            </span>
+          </span>
+
+          <span class="home-text2"><b>from below</b></span>
+
+          <span class="home-text3"><b>› State/U.T</b></span>
+
+            <div class="home-choice1" >
+
+              <select class ="chosen" id="selecid" onchange="selector();" >
+                <option>› Choose a State/U.T. ‹</option>
+                <option>Kerala</option> 
+                <option>Delhi</option>
+                <option>Telengana</option>
+                <option>Haryana</option>
+                <option>Rajasthan</option>
+                <option>Uttar Pradesh</option>
+                <option>Tamil Nadu</option>
+                <option>Karnataka</option>
+                <option>Maharashtra</option>
+                <option>Punjab</option>
+                <option>Union Territory of Jammu and Kashmir</option>
+                <option>Andhra Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>Odisha</option>
+                <option>Puducherry</option>
+                <option>West Bengal</option>
+                <option>Chhattisgarh</option>
+                <option>Union Territory of Chandigarh</option>
+                <option>Gujarat</option>
+                <option>Chandigarh</option>
+                <option>Himachal Pradesh</option>
+                <option>Jammu and Kashmir</option>
+                <option>Ladakh</option>
+                <option>Madhya Pradesh</option>
+                <option>Bihar</option>
+                <option>Manipur</option>
+                <option>Mizoram</option>
+                <option>Andaman and Nicobar Islands</option>
+                <option>Goa</option>
+                <option>Assam</option>
+                <option>Jharkhand</option>
+                <option>Arunachal Pradesh</option>
+                <option>Tripura</option>
+                <option>Meghalaya</option>
+                <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                <option>Sikkim</option>
+                <option>Nagaland</option>
+                <option>Telangana</option>
+                <option>Telangana***</option>
+              </select>
+
+            </div>  
+
+
+          <span class="home-text4"><b>› Data</b></span>
+
+          <div class="home-choice2" >
+            
+            <select class ="chosen" id="selec2id" onchange="selector2();" >
+              <option>› Select Data to be veiwed ‹</option>
+              <option>Cases</option>
+              <option>Recovered</option>
+              <option>Deaths</option>
+            </select>
+
+          </div>
+
+          <span class="home-text5"><b>› Chart Type(Optional)</b></span>
+
+          <div class="home-choice3" >          
+            <select class ="chosen" id="selec3id" onchange="selector3();" >
+              <option>› Select Chart type ‹</option>
+              <option>line</option>
+              <option>bar</option>
+            </select>
+
+          </div>
+
+          
+          <div class="next-botton">  
+
+            <button onclick="buttonfunc()" style="background-color: lawngreen;"> 
+              <span class="home-text6">Enter</span>
+            </button> <br>
+            <a href="http://localhost/PHP/dashboard.php">  <button type="button" class="btn btn-secondary fas fa-backward">   go back to your dashboard</button></a>
+
+            
+          </div>
+        </div>
+
+  </div>
+ 
+</body>
+    <script type="text/javascript">
+        $(".chosen").chosen();
+    </script>
+</html>

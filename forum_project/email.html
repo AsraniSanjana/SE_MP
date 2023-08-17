@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Mail</title>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body bgcolor="green">
+<script type="text/javascript">
+    var passcode;
+    function sendEmail() {
+        Rcode=Math.random().toString().substring(2, 8);
+        var TMail=document.getElementById("TOmail").value;
+        sessionStorage.setItem("passcode",Rcode);
+        Email.send({
+        SecureToken : "919abc6f-0e69-4760-acac-b249569002da",
+        To :TMail,
+        From : "turtwig0828@gmail.com",
+        Subject : "This is the subject",
+        Body : Rcode
+    })
+        .then(function (message) {
+        alert("mail sent successfully")
+        verify();
+        });   
+    }
+    function verify(){
+      document.location.href="verification.html";
+    }
+</script>
+<form>
+    <span><b>Enter the email</b></span>
+    <input id="TOmail" type="text"/>
+    <input type="button" value="Send Email" 
+        onclick="sendEmail()" />
+</form>
+</body>
+</html>

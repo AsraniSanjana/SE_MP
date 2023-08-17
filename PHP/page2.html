@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" type="image/jpg" href="favicon.jpeg"/>
+  <style>
+              @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  th{
+      background-color: lightblue;
+      color: purple;
+  }
+  table, th, td {
+  text-align: center;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+  
+  }
+  td{
+      background-color: lightgreen;
+  }
+  .blue{
+    background-color:lightcyan;
+    color:black;
+  }
+ 
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1 class="fas fa-hands-helping"> Covid Patient Tracker</h1>
+
+</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    
+      <a class="navbar-brand href=#"> CoviHelp</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="http://localhost/PHP/dashboard.php">Home</a></li>
+        <li class="active"><a href="#">Variants</a></li>
+        <li><a href="frameset.html">More</a></li>
+      
+      </ul>
+    </div>
+  </div>
+  
+  <div class="blue"><a href="http://localhost/PHP/surveyform.php" class="link-success">
+    <marquee width="100%" direction="right" height="20px"  >
+      <p class="text-light bg-dark">Fill Out the Survey Form Now if you haven't yet!!</p>
+
+      </marquee>
+      </a>
+      </div>
+</nav>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+       
+      <!-- <div class="fakeimg">Table  -->
+        <div>
+            <img src="images/covidintro.jpg" style="height: 200px; width: 200px">
+      </div>
+      <center>
+     
+      <h3>About Covid  ...</h3>
+    
+      <p><abbr title="Frequently Asked Questions" class="initialism">FAQs</abbr></p></center>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="https://www.medicalnewstoday.com/articles/can-you-detox-from-the-covid-19-vaccine">Can you detox from Covid Vaccine?</a></li>
+        <li class="active"><a href="https://www.medicalnewstoday.com/articles/coronavirus-myths-explored">Covid Myths</a></li>
+        <li class="active"><a href="https://hopkinsmedicine.org/health/conditions-and-diseases/coronavirus/is-the-covid19-vaccine-safe">Are vaccines Safe? </a></li>
+        <li class="active"><a href="https://www.nature.com/articles/d41586-021-01529-3">Is Covid Lab-made?</a></li>
+      </ul>
+      <hr class="hidden-sm hidden-md hidden-lg">
+    </div> 
+    <div class="col-sm-8">
+        <center>
+          <h2 class="text-success">Updated Details About the Covid Variants-></h2> 
+      
+     <h5>(Click on them to read more)</h5>
+     <h3 class="text-danger">Currently designated Variants of Concern (VOCs)+:</h3>
+  
+    </center>
+      <table class="table table-striped table-hover center" border="2" margin="2" cellspacing="3" >
+        <thead>
+            <th class="table-dark">WHO label </th>
+            <th class="table-dark">Pango lineage</th>
+            <th class="table-dark">GISAID clade</th>
+            <th class="table-dark">Nextstrain clade </th>
+            <th class="table-dark">Additional amino acid changes monitored </th>
+            <th class="table-dark">Earliest documented samples</th>
+            <th class="table-dark">Date of designation </th>
+
+        </thead>
+         <tbody>
+            <tr>
+                <th><a href="https://en.wikipedia.org/wiki/SARS-CoV-2_Alpha_variant">ALPHA</th></a>
+               
+                <td>B.1.1.7 </td>
+                
+               <td >GRY</td>
+                
+               <td >20I (V1) 
+                
+                <td >+S:484K <br>
+                +S:452R </td>
+                
+                <td > United Kingdom,  
+                Sep-2020 </td>
+                
+                <td > 18-Dec-2020</td>
+              </tr>
+              <tr>
+                <th> <a href="https://en.wikipedia.org/wiki/SARS-CoV-2_Beta_variant">BETA</th><a>
+              <td>  B.1.351 </td>
+
+               <td>GH/501Y.V2</td>
+                 <td>	20H (V2) </td>
+
+                     	<td>+S:L18F</td>
+                         <td > South Africa, May-2020</td> 	
+                <td >18-Dec-2020</td>
+              </tr>
+              <tr>
+                <th> <a href="https://en.wikipedia.org/wiki/SARS-CoV-2_Gamma_variant">GAMMA</th></a>
+
+               <td> P.1</td> 
+
+<td>GR/501Y.V3</td>
+<td>20J (V3) </td> 
+<td>+S:681H</td>
+   <td> Brazil, <br>Nov-2020</td> 
+<td>11-Jan-2021</td> 	 
+
+              </tr>
+              <tr>
+                <th> <a href="https://en.wikipedia.org/wiki/SARS-CoV-2_Delta_variant">DELTA</th></a>
+                <td> B.1.617.2</td> 	
+                <td>G/478K.V1 </td> 		
+                <td>21A, 21I, 21J	</td> 		
+                <td>+S:417N <br>+S:484K</td> 
+                <td>India, Oct-2020 </td> 
+                <td>	VOI: 4-Apr-2021 <br>
+                    VOC: 11-May-2021</td> 
+
+
+
+              </tr>
+              <tr>
+                <th><a href="https://en.wikipedia.org/wiki/SARS-CoV-2_Omicron_variant">OMICRON</th></a>
+               <td>B.1.1.529	</td>
+                   <td>GR/484A</td>
+                       <td>	21K</td>
+                           <td>	-	</td>
+                               <td>Multiple countries, Nov-2021</td>
+                                   <td>	
+VUM: 24-Nov-2021
+<br>
+VOC: 26-Nov-2021</td>
+              </tr>
+</tbody>
+        </table>
+      <br>
+      <h2></h2>
+      <center>
+      <div class="fakeimg">Talked About Topics  <hr>
+      <ul type="disk">
+     <li><a href="https://www.nature.com/articles/d41586-020-01834-3 "><p>Coronavirus misinformation, and how scientists can help to fight it</p></li></a>
+        <li><a href="https://www.gavi.org/vaccineswork/what-difference-between-efficacy-and-effectiveness"><p>Efficacy Vs. Efficiency Of Vaccines</p></li></a>
+            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7295866/"><p>Covid , Nutritions & Immunity </p></li></a>
+            </ul>
+    </div> </center>
+</div>
+  </div>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Relevant recommendations </p>  
+ 
+            
+
+
+              <table class="table table-striped table-hover center"border="2" margin="2" cellspacing="3" >
+              
+                 <tbody>
+                    <tr>
+                       <td><a href= "https://www.acrobiosystems.com/search-keywords-Omicron.html">
+                         NEW SARS-CoV-2
+                          Omicron | B.1.1.529 </a></td> 
+                       
+                          <td><a href= "https://www.acrobiosystems.com/search.php?keywords=c.1.2&is_search=1">         
+                          SARS-CoV-2
+                          C.1.2 (South Africa)</a></td> 
+                        
+                          <td><a href= "https://www.acrobiosystems.com/search.php?keywords=B.1.621&is_search=1">
+                        SARS-CoV-2
+                        Mu | B.1.621 (Columbia)
+                      </a></td> 
+                        
+                        <td><a href= "https://www.acrobiosystems.com/search.php?keywords=C.37&is_search=1">
+                         SARS-CoV-2
+                        Lambda | C.37 (South America)
+                      </a></td>                   
+                    
+                           <td><a href= "https://www.acrobiosystems.com/search-keywords-Delta.html">
+                           SARS-CoV-2
+                          "Delta/Delta+" | B.1.617.2 (India)
+                        </a></td> 
+                        </tr>
+                        <tr>
+                      
+                        
+                          <td><a href= "https://www.acrobiosystems.com/search.php?keywords=B.1.1.7+&is_search=1">
+                          SARS-CoV-2
+                          Alpha | B.1.1.7 (U.K)
+                        </a></td> 
+                     
+                        <td><a href="https://www.acrobiosystems.com/search.php?keywords=B.1.351&is_search=1">
+                       
+    SARS-CoV-2
+    Beta | B.1.351 (South Africa)
+    
+  </a></td> 
+  <td><a href="https://www.acrobiosystems.com/search.php?keywords=P.1&is_search=1">
+                         
+    SARS-CoV-2
+    Gamma | P.1 (Brazil)
+  </a></td> 
+  <td><a href="https://www.acrobiosystems.com/search.php?keywords=singlemutation&is_search=1">
+                            SARS-CoV-2
+                            Critical Spike Single Mutation
+                          </a></td> 
+                          <td><a href="https://www.acrobiosystems.com/search.php?keywords=N+mutations&is_search=1">
+                            
+    SARS-CoV-2
+    High Frequency Nucleocapsid Mutations
+  </a></td> 
+                                 
+                            </tr>
+                            </tbody>
+
+
+
+              </table>
+   
+    
+
+    
+    
+  
+    
+  
+    </p>
+</div>
+
+</body>
+</html>

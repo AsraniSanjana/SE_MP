@@ -1,0 +1,77 @@
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification on button click</title>
+</head>
+<body>
+    <div style="margin-top:20px; tex-align:center;">
+        <button style="padding:10px 5px">Show Notification</button></div>
+
+        <script>
+            let button=document.querySelector('button');
+            button.addEventListener('click',()=>{
+               //console.log(Notification.permission);
+               Notification
+               .requestPermission()
+               //.then(permission=>console.log(permission))
+               .then(showNotification)
+            });
+
+
+            function showNotification(permission){
+                if(permission!=='granted') return;
+
+                let notification=new Notification('my title!!',{
+                    body: "hi, how r u buddy...",
+                    icon:'covid1.png'
+                })
+                notification.onclick=()=>{
+                    // window.open('https://google.com')
+                    // for target="blank"
+                    // window.open('http://localhost/PHP/indexdemo.php') 
+                    // for reload onto the same tab ->
+                    window.location.href="http://localhost/PHP/indexdemo.php"
+
+                }
+            }
+        </script>
+</body>
+</html>  -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification on reload</title>
+</head>
+<body>
+    <script>
+        function showNotification(){
+            const notification=new Notification("customised message from sanjana!",{
+                body:"hey mate , its me sanjanaaaa!!"
+            });
+        }
+//default,granted,denied
+console.log(Notification.permission);
+if(Notification.permission==="granted"){
+   //alert("we have permission.");
+   showNotification();
+}
+else if(Notification.permission !== "denied"){
+        Notification.requestPermission().then(permission=>{
+            //console.log(permission);
+            if(permission==="granted"){
+            showNotification(); }
+
+        });
+     }
+        </script>
+</body>
+</html> 

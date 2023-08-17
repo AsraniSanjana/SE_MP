@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <link rel="shortcut icon" type="image/jpg" href="favicon.jpeg"/>
+  <title>India's Statewise Covid Data</title>
+
+  <style>
+        *  {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        }
+        .chartCard {
+        width: 100vw;
+        height: calc(100vh - 0px);
+        background: rgba(255, 26, 104, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .chartBox {
+        width: 1310px;
+        height: 650px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: rgb(241, 236, 236);
+        }
+        .home-button {
+        bottom: 20px;
+        left: 120px;
+        position: absolute;
+        background-color: #b079f0;
+        }
+      
+    </style>
+
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  
+    <div class="chartCard">
+        <div class="chartBox">
+        <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <div>
+        <a href="http://localhost/PHP/dashboard.php">  <button type="button" class="btn btn-secondary fas fa-backward">   go back to your dashboard</button></a>
+
+        <button onClick="homepage()" class="home-button button">
+        <span class="home-text6">back</span>
+        </button>
+        
+    
+    </div>
+
+    <script>
+        function homepage(){
+            sessionStorage.setItem("selected3", 'line');
+            document.location.href="igraphs.html";
+        }
+    </script>
+
+    <script>
+
+        const all_dates = [];
+        const all_names = [];
+        const all_cases = [];
+        const all_deaths = [];
+        const all_recoverd = [];
+        const all_new_cases = [];
+        const all_new_deaths = [];
+        const all_new_recovered = [];
+
+        const display_date = [];
+        const uname = [];
+        const display_1 = [];
+        const display_2 = [];
+        var selected_data1 ;
+        var selected_data2 ;
+
+        const change =[];
+
+        var selected_state = sessionStorage.getItem("selected");
+        var selected_data = sessionStorage.getItem("selected2");
+        var selected_type = sessionStorage.getItem("selected3");
+        if (!selected_type){
+            selected_type = 'line';
+
+        }
+
+        
+
+        
+        async function dataset(){
+            
+            const response = await fetch("icdata.csv") ; //csv file linking-------------------
+            const data = await response.text();
+
+            const rows = data.split('\n').slice(1);
+
+            rows.forEach(elt=>{
+                const row = elt.split(',');
+
+                const aa = row[0];
+                all_dates.push(aa);
+                
+                const bb = row[1];
+                all_names.push(bb);
+                
+                const cc = row[4];
+                all_cases.push(cc);
+                
+                const dd = row[5];
+                all_deaths.push(dd);
+                
+                const ee = row[6];
+                all_recoverd.push(ee);
+
+                const ff = row[7];
+                all_new_cases.push(ff);
+                
+                const gg = row[8];
+                all_new_deaths.push(gg);
+                
+                const hh = row[9];
+                all_new_recovered.push(hh);
+                
+
+            })
+            
+
+            uname.push(all_names[0]);
+
+
+            all_names.forEach(Element =>{
+                for (i=0; i<=uname.length;){
+
+                    if (Element!=uname[i])
+                    {
+                        if (i==uname.length){
+                            uname.push(Element);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    i++;
+                }
+            });
+
+            index();
+
+        }
+
+
+        async function index(){
+
+            for(i=0;i<=all_names.length;){
+
+
+                if (selected_state == all_names[i]){
+                    change.push(i);
+                }
+                i++;
+            }
+            intializer();
+
+        }
+
+        function ddates(){
+            change.forEach(ele=>{
+                display_date.push(all_dates[ele]);
+            });
+            chartcre();
+        }
+
+        function ddeaths(){
+
+
+            selected_data1= 'Deaths'
+            change.forEach(ele=>{
+                display_1.push(all_deaths[ele]);
+            });
+            change.forEach(ele=>{
+                display_2.push(all_new_deaths[ele]);
+            });
+
+            change.forEach(ele=>{
+                display_date.push(all_dates[ele]);
+            });
+
+            chartcre2();
+
+        }
+
+        function dcases(){
+
+            selected_data1='Total Cases'
+            selected_data2='New Cases'
+
+            change.forEach(ele=>{
+                display_1.push(all_cases[ele]);
+            });
+            change.forEach(ele=>{
+                display_2.push(all_new_cases[ele]);
+            });
+
+
+        }
+
+        function drecovery(){
+
+            selected_data1='Total Recovered'
+            selected_data2='New Recovery'
+
+            change.forEach(ele=>{
+                display_1.push(all_recoverd[ele]);
+                
+            });
+            change.forEach(ele=>{
+                display_2.push(all_new_recovered[ele]);
+            });
+        }
+
+        async function intializer(){
+
+
+            if(selected_data=='Deaths'){
+                ddeaths();
+            }
+
+            else if (selected_data== 'Cases'){
+                dcases();
+                ddates();
+            }
+
+            else{
+                drecovery();
+                ddates();
+            }
+
+            
+
+
+        }
+
+        dataset();
+
+
+
+        async function chartcre(){
+
+            
+            let myChart = document.getElementById('myChart').getContext('2d');
+
+
+            
+            // Global Options
+            Chart.defaults.global.defaultFontFamily = 'lato';
+            Chart.defaults.global.defaultFontSize = 15;
+            Chart.defaults.global.defaultFontColor = '#777';
+
+            let massPopChart = new Chart(myChart, {
+            type:selected_type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+                    labels:display_date, //dates ---------------------------------------------------------------------------
+                    datasets:[{
+                    label:selected_data1, //label displayed--------------------------------------------------------------
+
+                    data: display_1 ,  //data selected--------------------------------------------------------------------------
+                    
+                    //backgroundColor
+                    backgroundColor:'rgb(255, 159, 64,0.2)',
+                    borderWidth:1.3,
+                    borderColor:'rgba(255, 159, 64, 1.2)',
+                    tension:0.1,
+                    
+                },{
+
+                    label:selected_data2,
+
+                    data:display_2,
+
+
+                    //backgroundColor
+                    backgroundColor:'rgb(247, 106, 71,0.1)', 
+                    borderColor:'rgba(255, 26, 104,1.2)',
+                    borderWidth:1.3,
+                    tension:0.1
+
+                }
+                    
+                ]
+                },
+                options:{
+                    title:{
+                    display:true,
+                    text:selected_state,
+                    position:'top',
+                    fontSize:25
+                    },
+                    legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }
+                    },
+                    layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                    },
+                    tooltips:{
+                    },
+                
+                }
+                
+            });
+        }
+
+        async function chartcre2(){
+
+
+            let myChart = document.getElementById('myChart').getContext('2d');
+
+
+
+            // Global Options
+            Chart.defaults.global.defaultFontFamily = 'lato';
+            Chart.defaults.global.defaultFontSize = 15;
+            Chart.defaults.global.defaultFontColor = '#777';
+
+            let massPopChart = new Chart(myChart, {
+            type:selected_type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+                    labels:display_date, //dates ---------------------------------------------------------------------------
+                    datasets:[{
+                    label:selected_data1, //label displayed--------------------------------------------------------------
+
+                    data: display_1 ,
+                    borderWidth:1.3,
+                    backgroundColor:'rgba(255, 26, 104,0.1)',
+                    borderColor: 'rgba(255, 26, 104)',
+                    tension: 0.1
+                    }]
+                },
+                options:{
+                    title:{
+                    display:true,
+                    text:selected_state,
+                    position:'top',
+                    fontSize:25
+                    },
+                    legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }},
+                    layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }},
+                    tooltips:{
+                    },
+                
+                }
+                
+            });
+        }
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+require filename is used when filename/path/extension ->fatal error show hoga and execute ni hoga
+include karne se warning show hoti h but execute hota h
+
+include_once and require_once use hoga tab jab ek hi file mei use karna h toh
+like agar file include ni hui h tabhi b execute karana h code toh use include
+
+javascript se grab karne ke liye id ka use kar
+php se grab karne k liye name use karlenge
+
+VALIDATIONS ->
+
+1. EMPTY FIELDS
+   (BLANK DATABASE ENTRIES)
+
+2. TO PREVENT USER FROM INSERTING HTML MARKUP TAGS OR SQL INJECTIONS INTO DATABASE
+   ( VALIDATING STRING PATTERNS USING REGEX)
+
+   string mei se html tags ko remove karke , remaining string ko databse mei dalta hai
+
+
+3. VALIDATE INPUT VALUE RANGE
+
+4. USERNAME ALREADY EXISTS
+
+// MERGE ALL VALIDATIONS 
+
+BUGS ->
+
+1. DATA RESUBMIT ON PAGE REFRESH -> move the code from that file (onsubmit)
+to another file.
+2. FETCH ERROR AND SUCCESS MESSAGES FROM ANOTHER PAGE .
+validation/error messages get shown on the action page since we did 1.
+msg var me store kiya concatenate karke sare errors .
+->url parameter lekr-> upar url mei ?del=54 aiseee
+
+"confirm form resubmission"
+->make sure u dont refresh from that logo
+refresh the link 
+
+
+
+
+SEARCH FROM DATABASE ENTRIES
+ 
+-> SEARCH FROM ALL FIELDS  : OR OPERATOR
+-> SEARCH EVEN INCOMPLETE SEARCH QUERIES : % OPERATOR
+-> SEARCH ALL THE ENTRIES : WHILE LOOP
+-> ON CLICKING THE SEARCHED ENTRY , REDIRECT TO THAT USER DASHBOARD  :  ANCHOR TAGS 
+
+
+
+scroll back to top : href as #home 
+home is a section, class and id
+
+
+mysqli_real_escape_string 
+ It is used before inserting a string in a database, as it removes any special characters that may interfere with the query operations
+
+
+preg match
+This function searches the string for pattern, and returns true if the pattern exists otherwise returns false.
+so i searched for characters like space @*#* in fullname , since its not valid 
+
+
+The FILTER_VALIDATE_EMAIL filter validates an e-mail address.
+
+
+The define() function defines a constant.
+
+Constants are much like variables, except for the following differences:
+
+A constant's value cannot be changed after it is set
+Constant names do not need a leading dollar sign ($)
+Constants can be accessed regardless of scope
+Constant values can only be strings and numbers
+
+
+print_r() displays information about a variable in a way that's readable by humans.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+<div class="jumbotron">
+<h1 class="display-4" > Hello,world</h1>
+<p class="lead" >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi consectetur deleniti, nisi earum doloremque rerum consequuntur laborum quas. Architecto, quam!
+</p>
+<hr class="my-4">
+
+<p class="lead">
+<a class="btn btn-primary btn-lg" href="#" role="button" > Back </a>
+</p>
+</div>
+
+</div>
+  
+
+   <?php
+   $data=$_GET['data'];
+//    echo $data;
+$sql="SELECT * FROM `customer` WHERE id=$data";
+$result=mysqli_query($con,$sql);
+if($result){
+    $row=mysqli_fetch_assoc($result);
+    // echo $row['full_name'];
+    echo ''
+
+}
+
+
+
+
+ echo '<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">'.$row['full_name'].'</h1> 
+      <p class="lead">Your Email Address is : '.$row['email'].'</p>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <p>Para</p>
+  <hr class="my-4">
+  <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button" > Back </a>
+      
+  </p>
+ </div>
+  ' ;
+
+
+
+
+
+
+   <h1 class="display-4">Welcome '.$row['full_name'].'</h1>
+
+
+
+different graphs->different variants
+
+    <!-- table-light -->
+    <!-- table-success -->
+    <!-- table-danger -->
+    <!-- table-primary -->
+    <!-- table-secondary -->
+    <!-- table-danger -->
+    <!-- table-light -->
+    <!-- class="table-info" -->
+
+
+
+
+      limit 0,3 -> will only print 3 rows: row no. 0 ,print  3 rows
+
+
+
+
+
+
+
+
+
+
+      
+//  <script>
+// let person = prompt("Please enter your name", "Harry Potter");
+// let text;
+// if (person == null || person == "") {
+//   text = "User cancelled the prompt.";
+// } else {
+//   text = "Hello " + person + "! How are you today?";
+// }
+// alert(text);

@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+ <!-- bootstrap cdn link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/jpg" href="favicon.jpeg"/>
+  <title>Countrywise covid data</title>
+
+  <style>
+     * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 0px);
+        background: rgba(255, 26, 104, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 1310px;
+        height: 650px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: rgb(241, 236, 236);
+      }
+      .home-button {
+        bottom: 20px;
+        left: 120px;
+        position: absolute;
+        background-color: #b079f0;
+      }
+      
+  </style>
+
+</head>
+<body>
+  
+  <div class="chartCard">
+    <div class="chartBox">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <div>
+    
+    <button onClick="homepage()" class="home-button button">
+      <span class="home-text6">back</span>
+    </button>
+    <a href="http://localhost/PHP/dashboard.php">  <button type="button" class="btn btn-secondary fas fa-backward">   go back to your dashboard</button></a>
+
+  </div>
+
+  <script>
+    function homepage(){
+    document.location.href="Home.html";
+    }
+</script>
+
+  <script> 
+
+    
+    var selectedc = sessionStorage.getItem("selection"); //selected option is stored locally 
+
+    const xlables=[];
+    const xlable =[];
+    const xcases =[];
+    const xcase=[];
+    const xdates=[];
+    const xdate=[];
+    const ccase=[];
+    const ddeaths=[];
+    const ddeath=[];
+    var cnum;
+
+    async function countrynum(){
+
+      for (var i=0; i<= xlable.length; i++){
+        if (selectedc==xlable[i]){
+          cnum = i;
+          console.log(false);
+        }
+      }
+
+
+
+
+    }
+
+
+    async function getData(){
+      
+      const response = await fetch("main.csv") // loading csv
+      const data = await response.text();
+
+
+      const rows = data.split('\n').slice(1); // dividing data to rows 
+      rows.forEach(elt=>{
+        const row = elt.split(',');
+        const date = row[0];
+        xdates.push(date);
+        const country = row[2];
+        xlables.push(country);
+
+        const cases = row[4];
+        xcases.push(cases);
+        const deaths = row[6];
+        ddeaths.push(row[6]);
+        
+      })
+      
+      vv=0;
+      change=[0];
+      while (vv!=xlables.length){ // sorting
+        
+        if (xlables[vv]!==xlables[vv+1]){ // getting the change in 
+
+            xlable.push(xlables[vv]);
+            change.push(vv);
+
+        }
+        else{
+
+        }
+
+        vv++;
+
+      }
+      
+      var dstart = change[cnum];
+      var dstop = change[cnum+1];
+      console.log(change[cnum]);
+      console.log(true);
+
+      for (var i=0; i <= change[cnum];i++){ // separating deaths , cases , and dates 
+
+        ddeath.push(ddeaths[i]);
+        xdate.push(xdates[i]);
+        xcase.push(xcases[i]);
+
+      }
+
+
+
+
+    }
+
+    chartcre();
+
+    async function chartcre(){
+
+   
+        await getData();
+        await countrynum();        
+        await getData();
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'lato';
+        Chart.defaults.global.defaultFontSize = 15;
+        Chart.defaults.global.defaultFontColor = '#777';
+
+        let massPopChart = new Chart(myChart, {
+          type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+          data:{
+            labels:xdate,
+            datasets:[{
+              label:'Cases',
+
+              data:xcase,
+
+
+              //backgroundColor
+              backgroundColor:[
+              'rgb(255, 159, 64,0.2)'
+              ],
+              borderWidth:1,
+              borderColor:'rgba(255, 159, 64, 2.2)',
+              hoverBorderWidth:2,
+              hoverBorderColor:'rgb(255, 159, 64,0.2)'
+               },{
+              label:'Deaths',
+
+              data:ddeath,
+
+
+              //backgroundColor
+              backgroundColor:[
+              'rgb(247, 106, 71,0.2)'
+              ], borderColor: [
+              'rgba(255, 26, 104,2.2)'
+               ],
+              borderWidth:1,
+              hoverBorderWidth:2,
+              hoverBorderColor:'rgba(255, 26, 104,0.2)',
+
+            }
+            
+          ]
+          },
+          options:{
+            title:{
+              display:true,
+              text:selectedc,
+              position:'top',
+              fontSize:25
+            },
+            legend:{
+              display:true,
+              position:'right',
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            layout:{
+              padding:{
+                left:0,
+                right:0,
+                bottom:0,
+                top:0
+              }
+            },
+            tooltips:{
+              // enabled: false;
+            },
+          
+          }
+          
+        });
+  }
+  </script>
+  </body>
+</html>

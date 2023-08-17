@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+</head>
+<body text = "#0000FF" bgcolor = "Aqua">
+</body>
+<script>
+    var pass =sessionStorage.getItem("passcode");
+    console.log(pass);
+
+    function verify(){
+        var Epass = document.getElementById("Epass").value;
+        console.log(Epass);
+        if (pass == Epass){
+            alert("Your email is verified!")
+        }
+        else{
+            alert("invalid Verification code!")
+        }
+       
+    }
+</script>
+<form>
+    <span"><b>Enter the verification code</b></span>
+    <input id="Epass" type="text"/>
+    <input type="button" value="verif" 
+    onclick="verify()" />
+</form>
+
+</html>

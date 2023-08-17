@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Covid Patient Tracker....</title>
+  <link rel="shortcut icon" type="image/jpg" href="favicon.jpeg"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+      *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.wrapper{
+  background: #171c24;
+  position: fixed;
+  width: 100%;
+  top:0px;
+  left:0px;
+}
+.wrapper nav{
+  position: relative;
+  display: flex;
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .content{
+  display: flex;
+  align-items: center;
+}
+nav .content .links{
+  margin-left: 80px;
+  display: flex;
+}
+.content .logo a{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+}
+.content .links li{
+  list-style: none;
+  line-height: 70px;
+}
+.content .links li a,
+.content .links li label{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 9px 17px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.content .links li label{
+  display: none;
+}
+.content .links li a:hover,
+.content .links li label:hover{
+  background: #323c4e;
+}
+.wrapper .search-icon,
+.wrapper .menu-icon{
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 70px;
+  width: 70px;
+  text-align: center;
+}
+.wrapper .menu-icon{
+  display: none;
+}
+.wrapper #show-search:checked ~ .search-icon i::before{
+  content: "\f00d";
+}
+
+.wrapper .search-box{
+  position: absolute;
+  height: 100%;
+  max-width: calc(100% - 50px);
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.wrapper #show-search:checked ~ .search-box{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wrapper input[type="checkbox"]{
+  display: none;
+}
+
+/* Dropdown Menu code start */
+.content .links ul{
+  position: absolute;
+  background: #171c24;
+  top: 80px;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+}
+.content .links li:hover > ul{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+.content .links ul li a{
+  display: block;
+  width: 100%;
+  line-height: 70px;
+  border-radius: 0px!important;
+}
+.content .links ul ul{
+  position: absolute;
+  top: 0;
+  right: calc(-100% + 8px);
+}
+.content .links ul li{
+  position: relative;
+}
+.content .links ul li:hover ul{
+  top: 0;
+}
+
+/* Responsive code start */
+@media screen and (max-width: 1250px){
+  .wrapper nav{
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  nav .content .links{
+    margin-left: 30px;
+  }
+  .content .links li a{
+    padding: 8px 13px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 100px);
+  }
+  .wrapper .search-box input{
+    padding: 0 100px 0 15px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .wrapper .menu-icon{
+    display: block;
+  }
+  .wrapper #show-menu:checked ~ .menu-icon i::before{
+    content: "\f00d";
+  }
+  nav .content .links{
+    display: block;
+    position: fixed;
+    background: #14181f;
+    height: 100%;
+    width: 100%;
+    top: 70px;
+    left: -100%;
+    margin-left: 0;
+    max-width: 350px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    transition: all 0.3s ease;
+  }
+  nav #show-menu:checked ~ .content .links{
+    left: 0%;
+  }
+  .content .links li{
+    margin: 15px 20px;
+  }
+  .content .links li a,
+  .content .links li label{
+    line-height: 40px;
+    font-size: 20px;
+    display: block;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .content .links li a.desktop-link{
+    display: none;
+  }
+
+  /* dropdown responsive code start */
+  .content .links ul,
+  .content .links ul ul{
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: none;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  .content .links #show-features:checked ~ ul,
+  .content .links #show-services:checked ~ ul,
+  .content .links #show-items:checked ~ ul{
+    max-height: 100vh;
+  }
+  .content .links ul li{
+    margin: 7px 20px;
+  }
+  .content .links ul li a{
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 5px!important;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .wrapper nav{
+    padding: 0 10px;
+  }
+  .content .logo a{
+    font-size: 27px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 70px);
+  }
+  .wrapper .search-box .go-icon{
+    width: 30px;
+    right: 0;
+  }
+  .wrapper .search-box input{
+    padding-right: 30px;
+  }
+}
+
+.dummy-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  z-index: -1;
+  padding: 0 20px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.dummy-text h2{
+
+  font-size: 45px;
+  margin: 5px 0;
+}
+
+::placeholder{
+ color:black;
+ opacity:0.5;
+ text-align:center;
+}
+.footer-text{
+  text-align:left;
+}
+.footerclass{
+  background-color:aqua ;
+}
+footer{
+  background-color: blueviolet;
+}
+  </style>
+</head>
+<body>
+  <div>
+    <script>
+        function search(e) {
+    let searched = document.getElementById("search").value.trim();
+    if (searched !== "") {
+    let text = document.getElementById("text").innerHTML;
+    let re = new RegExp(searched,"g"); // search for all instances
+    let newText = text.replace(re, `<mark>${searched}</mark>`);
+    document.getElementById("text").innerHTML = newText;
+    }}
+    
+    
+    </script>
+    <script>
+      function showNotification(){
+          const notification=new Notification("Hey! We're From Group 42!!",{
+              body:"Hope you're finding the website useful! Do give us your feedback on our forum page 🙂",
+              icon:'covid1.png'
+             
+          });
+      }
+//default,granted,denied
+console.log(Notification.permission);
+if(Notification.permission==="granted"){
+ //alert("we have permission.");
+ showNotification();
+}
+else if(Notification.permission !== "denied"){
+      Notification.requestPermission().then(permission=>{
+          //console.log(permission);
+          if(permission==="granted"){
+          showNotification(); 
+         notification.onclick=()=>{
+                    // window.open('https://google.com')
+                    // for target="blank"
+                    // window.open('http://localhost/PHP/indexdemo.php') 
+                    // for reload onto the same tab ->
+                    window.location.href="http://localhost/PHP/indexdemo.php"
+
+                }}
+
+      });
+   }
+      </script>
+  <div class="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+     
+        <ul class="links">
+          <li> 
+            <a href="#"   class="fal fa-viruses" aria-hidden="true"></a></li>
+            
+
+
+          <li><a href="http://localhost/PHP/dashboard.php">Home</a></li>
+          <li><a href="#">More</a>
+            <ul>
+                
+                    <li> 
+                        <a href="http://localhost/PHP/indexdemo.php"   class="fa fa-id-badge" aria-hidden="true">  REGISTER</a></li>
+                       
+                <li><a href="http://localhost/PHP/login.php" class="fa fa-user-circle" aria-hidden="true">  Login</a></li>
+               
+                
+              </ul></li>
+
+          <li>
+            <a href="#" class="desktop-link">Features</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Features</label>
+            <ul>
+              
+              <li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19" target="blank">Know more about the virus</a></li>
+              
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Services</a>
+            <input type="checkbox" id="show-services">
+            <label for="show-services">Services</label>
+            <ul>
+              <li><a href="https://www.mohfw.gov.in/covid_vaccination/vaccination/index.html" target="blank">Vaccination info</a></li>
+              <li><a href="https://www.covid19treatmentguidelines.nih.gov/about-the-guidelines/whats-new/"target="blank"> Covid Guidelines</a></li>
+            
+            </ul>
+          </li>
+        
+          <li>
+            <div id="searchbox">
+              <i class="fa fa-search"></i>
+              <input type="text" id="search" placeholder="search for keywords"/>
+        <button  onClick="search(id)" id="button">
+        Search
+        </button>
+            </div>
+            </li>
+
+
+
+        </ul>
+      </div>
+      
+        
+      </form>
+    </nav>
+  </div>
+
+  <div class="dummy-text" >
+      <br><br><br>
+      <br>
+      <br> <br> <br><br>
+      <br>
+      <br> <br> <br><br> <br><br><br>
+      <br>
+      <br> <br> <br><br>
+      <br>
+      <br> <br> <br><br>
+     
+      
+      <br> <br> <br>
+      <br>
+      <br> <br> <br><br>
+      <br>
+      <br> <br> <br><br>
+      <br><br> <br> <br><br><br><br> <br> <br><br><br> <br> <br><br><br>
+      
+   <h4>COVID-19</h4>
+   
+  <br><br>
+    <h3>With the global coronavirus pandemic in its second year governments are still struggling to vaccinate their populations to herd immunity levels. The Delta SARS-CoV-2 variant has been a source of increased case rates and of non-severe breakthrough COVID-19 infections among vaccinated people, and investigators are working to determine if, when, and in whom additional vaccine “booster” doses would be helpful for illness prevention and pandemic control.</h3>
+    <h4>Stay up-to-date with valuable coronavirus (COVID-19) data summarized by confirmed cases, geography, testing and treatment, projections, and economic impact.</h4>
+    <p id="text">Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.
+
+      Most people infected with the virus will experience mild to moderate respiratory illness and recover without requiring special treatment. However, some will become seriously ill and require medical attention. Older people and those with underlying medical conditions like cardiovascular disease, diabetes, chronic respiratory disease, or cancer are more likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill or die at any age. 
+      
+      The best way to prevent and slow down transmission is to be well informed about the disease and how the virus spreads. Protect yourself and others from infection by staying at least 1 metre apart from others, wearing a properly fitted mask, and washing your hands or using an alcohol-based rub frequently. Get vaccinated when it’s your turn and follow local guidance.
+      
+      The virus can spread from an infected person’s mouth or nose in small liquid particles when they cough, sneeze, speak, sing or breathe. These particles range from larger respiratory droplets to smaller aerosols. It is important to practice respiratory etiquette, for example by coughing into a flexed elbow, and to stay home and self-isolate until you recover if you feel unwell.
+    
+    <br><br><br>
+ORIGIN OF THE VIRUS : 
+<br>
+
+
+  Origins of human coronaviruses with possible intermediate hosts
+  The most recent common ancestor (MRCA) of all coronaviruses is estimated to have existed as recently as 8000 BCE, although some models place the common ancestor as far back as 55 million years or more, implying long term coevolution with bat and avian species.The most recent common ancestor of the alphacoronavirus line has been placed at about 2400 BCE, of the betacoronavirus line at 3300 BCE, of the gammacoronavirus line at 2800 BCE, and the deltacoronavirus line at about 3000 BCE. Bats and birds, as warm-blooded flying vertebrates, are an ideal natural reservoir for the coronavirus gene pool (with bats the reservoir for alphacoronaviruses and betacoronavirus – and birds the reservoir for gammacoronaviruses and deltacoronaviruses). The large number and global range of bat and avian species that host viruses have enabled extensive evolution and dissemination of coronaviruses.
+  
+  Many human coronaviruses have their origin in bats.The human coronavirus NL63 shared a common ancestor with a bat coronavirus (ARCoV.2) between 1190 and 1449 CE. The human coronavirus 229E shared a common ancestor with a bat coronavirus (GhanaGrp1 Bt CoV) between 1686 and 1800 CE.More recently, alpaca coronavirus and human coronavirus 229E diverged sometime before 1960.MERS-CoV emerged in humans from bats through the intermediate host of camels.MERS-CoV, although related to several bat coronavirus species, appears to have diverged from these several centuries ago.The most closely related bat coronavirus and SARS-CoV diverged in 1986.The ancestors of SARS-CoV first infected leaf-nose bats of the genus Hipposideridae; subsequently, they spread to horseshoe bats in the species Rhinolophidae, then to Asian palm civets, and finally to humans.
+  
+  Unlike other betacoronaviruses, bovine coronavirus of the species Betacoronavirus 1 and subgenus Embecovirus is thought to have originated in rodents and not in bats. In the 1790s, equine coronavirus diverged from the bovine coronavirus after a cross-species jump.Later in the 1890s, human coronavirus OC43 diverged from bovine coronavirus after another cross-species spillover event.It is speculated that the flu pandemic of 1890 may have been caused by this spillover event, and not by the influenza virus, because of the related timing, neurological symptoms, and unknown causative agent of the pandemic.Besides causing respiratory infections, human coronavirus OC43 is also suspected of playing a role in neurological diseases.In the 1950s, the human coronavirus OC43 began to diverge into its present genotypes.Phylogenetically, mouse hepatitis virus (Murine coronavirus), which infects the mouse's liver and central nervous system,is related to human coronavirus OC43 and bovine coronavirus. Human coronavirus HKU1, like the aforementioned viruses, also has its origins in rodents.
+</h6>  
+<br><br><br>
+  Stay informed:
+<br>
+<a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public#:~:text=Avoid%20crowds%20and%20close%20contact,when%20you%20cough%20or%20sneeze.">
+Advice for the public
+</a>
+<br>
+<a href="https://www.who.int/westernpacific/emergencies/covid-19/information/mythbusters">
+Myth busters
+</a>
+<br>
+<a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html">
+Frequently Asked Questions and answers
+</a>
+<br>
+<a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports">
+Situation reports
+<br>
+</a>
+<a href="https://www.unicef.org/india/coronavirus/covid-19">
+All information on the COVID-19 outbreak
+</a>
+<br><br>
+</p>
+
+<br><br><br>
+
+
+<a href="http://localhost/PHP/dashboard.php">  <button type="button" class="btn btn-secondary fas fa-backward">   go back to your dashboard</button></a>
+
+<br><br><hr>
+    <footer>
+<i class="far fa-copyright"></i>
+    <h6>Covid Patient Tracker Website</h6>
+    <h6>By Group-42 SE</h6>
+  </div>
+ 
+</footer>
+
+
+</body>
+</html>

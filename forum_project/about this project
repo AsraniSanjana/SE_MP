@@ -1,0 +1,29 @@
+things that can be included 
+-- remember me password
+-- forgot password
+email linking
+-- show password
+themes 
+voice commands 
+host the website 
+make it responsive for phone
+
+
+CATEGORIES CAN BE 
+1. ABOUT THIS CPT WEBSITE ...(CODING USED HERE)   coding
+2. SHARE YOUR THOUGHTS ABOUT THIS WEBSITE         feedback
+3. SHARE YOUR COVID EXPERIENCE                    your_covid_experience
+ 
+-- INSERT INTO `categories` (`category_id`, `category_name`, `category_description`, `created`) VALUES ('3', 'your_covid_experience', 'SHARE YOUR COVID EXPERIENCE ', current_timestamp());
+
+-- comment by gives user id of commenter
+
+
+
+-- TO ENABLE FULL TEXT SEARCH 
+--alter the data in table with the below query
+alter table threads add
+FULLTEXT(`thread_title`,`thread_desc`)
+click on edit inline in the threads table ...go 
+-- alter the data in table with the below query.
+

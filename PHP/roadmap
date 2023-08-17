@@ -1,0 +1,55 @@
+
+
+db fields : login                .............sanjana 
+
+fullname
+username
+email
+password
+
+
+db fields registration : registration ..................sakshi 
+
+db fields survey form ..........?
+
+
+id (serial number wise arrange karo)
+fullname                                             text field.. varchar
+username                                             text field...varchar
+gender                                               radio button..enum
+password(md5)                                        textfield...varchar  
+selectan option                                     dropdown                      
+symptoms                                             checkbox
+phone number                                         int 
+
+
+validations :
+
+1. number should be 10 digits
+2. email invalid
+3. password and confirm password donot match
+4. no radio button selected
+
+
+OUR WEBSITE ...->
+
+PAGE1
+go to graphs 
+//U NEED TO BE REGISERED TO VIEW THE graphs//
+redirect to register page
+REGISTER PAGE
+...................this email is already taken ...........................
+//U CAN NOW LOGIN TO YOUR CPT ACCOUNT AND VIEW THE GRAPHS//
+LOGIN PAGE
+....................your email isnt registered yet ....please register before login process...................
+.................... id or password incorrect....................................
+after login->page2->page3(survey form)->home->graphs
+view registered users ->only females , ........
+
+
+LOGOUT PAGE ->back to home
+
+
+if not logged in , cant show other than home page 
+
+
