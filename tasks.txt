@@ -1,1 +1,1 @@
-1. add remember pswd, forgot pswd, show pswd functionality
+1. add remember pswd, forgot pswd, show pswd, reset pswd functionality
